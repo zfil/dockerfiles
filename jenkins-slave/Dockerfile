@@ -1,4 +1,4 @@
-FROM java:8
+FROM openjdk:8
 MAINTAINER Philippe Jandot
 
 # Docker install (borrowed from https://github.com/docker-library/docker)

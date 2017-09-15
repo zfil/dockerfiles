@@ -12,7 +12,6 @@ RUN apt-get update -qq \
     && echo "deb https://deb.nodesource.com/node_6.x xenial main" > /etc/apt/sources.list.d/nodesource.list \
     && curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
     && echo "deb https://dl.yarnpkg.com/debian/ stable main" > /etc/apt/sources.list.d/yarn.list \
-    && apt-get purge -y -qq curl \
     && rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*
 
 ENV JDK_VERSION "8u131*"
@@ -25,3 +24,13 @@ RUN apt-get update -qq \
     && apt-get install -y -qq sbt=${SBT_VERSION} \
     && apt-get install -y -qq nodejs=${NODE_VERSION} yarn=${YARN_VERSION} \
     && rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*
+
+ENV DOCKER_VERSION 17.06.2
+
+RUN set -x \
+    && curl -sfSL "https://download.docker.com/linux/static/stable/x86_64/docker-${DOCKER_VERSION}-ce.tgz" -o docker.tgz \
+    && tar -xzvf docker.tgz \
+    && mv docker/* /usr/local/bin/ \
+    && rmdir docker \
+    && rm docker.tgz \
+    && chmod +s /usr/local/bin/docker

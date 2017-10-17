@@ -17,7 +17,7 @@ RUN apt-get update -qq \
 ENV JDK_VERSION "8u131*"
 ENV SBT_VERSION "1.0.*"
 ENV NODE_VERSION "6.11.*"
-ENV YARN_VERSION "1.0.*"
+ENV YARN_VERSION "1.2.*"
 
 RUN apt-get update -qq \
     && apt-get install -y -qq jq \
@@ -26,7 +26,7 @@ RUN apt-get update -qq \
     && apt-get install -y -qq nodejs=${NODE_VERSION} yarn=${YARN_VERSION} \
     && rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*
 
-ENV DOCKER_VERSION 17.06.2
+ENV DOCKER_VERSION 17.09.0
 
 RUN set -x \
     && curl -sfSL "https://download.docker.com/linux/static/stable/x86_64/docker-${DOCKER_VERSION}-ce.tgz" -o docker.tgz \
@@ -35,3 +35,6 @@ RUN set -x \
     && rmdir docker \
     && rm docker.tgz \
     && chmod +s /usr/local/bin/docker
+
+RUN curl -sfSL https://bootstrap.pypa.io/get-pip.py | python \
+    && /usr/local/bin/pip install awscli

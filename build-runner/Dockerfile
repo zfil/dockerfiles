@@ -20,6 +20,7 @@ ENV NODE_VERSION "6.11.*"
 ENV YARN_VERSION "1.2.*"
 
 RUN apt-get update -qq \
+    && apt-get install -y -qq bc \
     && apt-get install -y -qq jq \
     && apt-get install -y -qq openjdk-8-jdk-headless=${JDK_VERSION} \
     && apt-get install -y -qq sbt=${SBT_VERSION} \

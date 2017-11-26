@@ -14,10 +14,10 @@ RUN apt-get update -qq \
     && echo "deb https://dl.yarnpkg.com/debian/ stable main" > /etc/apt/sources.list.d/yarn.list \
     && rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*
 
-ENV JDK_VERSION "8u131*"
+ENV JDK_VERSION "8u151*"
 ENV SBT_VERSION "1.0.*"
-ENV NODE_VERSION "6.11.*"
-ENV YARN_VERSION "1.2.*"
+ENV NODE_VERSION "6.*"
+ENV YARN_VERSION "1.*"
 
 RUN apt-get update -qq \
     && apt-get install -y -qq bc \
